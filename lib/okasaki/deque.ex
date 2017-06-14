@@ -13,30 +13,44 @@ defmodule Okasaki.Deque do
 
   @c 3
 
+  @opaque t :: %__MODULE__{
+    size: integer,
+    left: list,
+    right: list,
+    lefthat: list,
+    righthat: list
+  }
+
+  @spec new() :: t
   def new() do
     %__MODULE__{}
   end
 
+  @spec size(t) :: non_neg_integer
   def size(deque = %__MODULE__{size: size}) do
     size
   end
 
+  @spec to_list(t) :: list
   def to_list(deque) do
     deque.left ++ :lists.reverse(deque.right)
   end
 
+  @spec insert_left(t, item :: any) :: t
   def insert_left(deque, item) do
     makedeque([item | deque.left], deque.right, safe_tl(deque.lefthat), safe_tl(deque.righthat), deque.size + 1)
   end
 
+  @spec insert_right(t, item :: any) :: t
   def insert_right(deque, item) do
     makedeque(deque.left, [item | deque.right], safe_tl(deque.lefthat), safe_tl(deque.righthat), deque.size + 1)
   end
 
+  @spec remove_left(t) :: {:ok, {any, t}} | {:error, :empty}
   # Only zero or one item in dequeue
   def remove_left(%__MODULE__{left: left, right: right}) when length(left) == 0 do
     case right do
-      [] -> {:error, :empty_deque}
+      [] -> {:error, :empty}
       [item | _] -> {:ok, {item, new()}}
     end
   end
@@ -47,10 +61,12 @@ defmodule Okasaki.Deque do
     {:ok, result}
   end
 
+
+  @spec remove_right(t) :: {:ok, {any, t}} | {:error, :empty}
   # Only zero or one item in dequeue
   def remove_right(%__MODULE__{left: left, right: right}) when length(right) == 0 do
     case left do
-      [] -> {:error, :empty_deque}
+      [] -> {:error, :empty}
       [item | _] -> {:ok, {item, new()}}
     end
   end
