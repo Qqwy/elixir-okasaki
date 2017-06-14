@@ -1,7 +1,7 @@
 defmodule Okasaki.Deque do
   defstruct left: [], right: [], lefthat: [], righthat: [], size: 0
   @moduledoc """
-  ODeque is an implementation of Chris Okasaki's
+  Deque is an implementation of Chris Okasaki's
   Purely Functional Deque
 
   This means that pushing and popping to both ends of the double-ended-queue
@@ -17,47 +17,47 @@ defmodule Okasaki.Deque do
     %__MODULE__{}
   end
 
-  def size(odeque) do
-    odeque.size
+  def size(deque = %__MODULE__{size: size}) do
+    size
   end
 
-  def to_list(odeque) do
-    odeque.left ++ :lists.reverse(odeque.right)
+  def to_list(deque) do
+    deque.left ++ :lists.reverse(deque.right)
   end
 
-  def insert_left(odeque, item) do
-    makedeque([item | odeque.left], odeque.right, safe_tl(odeque.lefthat), safe_tl(odeque.righthat), odeque.size + 1)
+  def insert_left(deque, item) do
+    makedeque([item | deque.left], deque.right, safe_tl(deque.lefthat), safe_tl(deque.righthat), deque.size + 1)
   end
 
-  def insert_right(odeque, item) do
-    makedeque(odeque.left, [item | odeque.right], safe_tl(odeque.lefthat), safe_tl(odeque.righthat), odeque.size + 1)
+  def insert_right(deque, item) do
+    makedeque(deque.left, [item | deque.right], safe_tl(deque.lefthat), safe_tl(deque.righthat), deque.size + 1)
   end
 
   # Only zero or one item in dequeue
   def remove_left(%__MODULE__{left: left, right: right}) when length(left) == 0 do
     case right do
-      [] -> {:error, :empty_odeque}
+      [] -> {:error, :empty_deque}
       [item | _] -> {:ok, {item, new()}}
     end
   end
 
-  def remove_left(odeque = %__MODULE__{}) do
-    [item | left] = odeque.left
-    result = {item, makedeque(left, odeque.right, safe_tl(safe_tl(odeque.lefthat)), safe_tl(safe_tl(odeque.righthat)), odeque.size - 1)}
+  def remove_left(deque = %__MODULE__{}) do
+    [item | left] = deque.left
+    result = {item, makedeque(left, deque.right, safe_tl(safe_tl(deque.lefthat)), safe_tl(safe_tl(deque.righthat)), deque.size - 1)}
     {:ok, result}
   end
 
   # Only zero or one item in dequeue
   def remove_right(%__MODULE__{left: left, right: right}) when length(right) == 0 do
     case left do
-      [] -> {:error, :empty_odeque}
+      [] -> {:error, :empty_deque}
       [item | _] -> {:ok, {item, new()}}
     end
   end
 
-  def remove_right(odeque = %__MODULE__{}) do
-    [item | right] = odeque.right
-    result = {item, makedeque(odeque.left, right, safe_tl(safe_tl(odeque.lefthat)), safe_tl(safe_tl(odeque.righthat)), odeque.size - 1)}
+  def remove_right(deque = %__MODULE__{}) do
+    [item | right] = deque.right
+    result = {item, makedeque(deque.left, right, safe_tl(safe_tl(deque.lefthat)), safe_tl(safe_tl(deque.righthat)), deque.size - 1)}
     {:ok, result}
   end
 
