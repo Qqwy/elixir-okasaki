@@ -1,4 +1,8 @@
 defmodule Okasaki.Deque do
+  def new() do
+    implementation = Application.get_env(:okasaki, :default_deque_implementation, Okasaki.Implementations.ConstantQueue)
+    implementation.new()
+  end
 
   def new(implementation \\ Okasaki.Implementations.ConstantQueue) do
     implementation.new()

@@ -6,8 +6,8 @@ for module <- [
     defimpl Inspect, for: module do
       import Inspect.Algebra
 
-      def inspect(deque, opts) do
-        concat ["#Okasaki.Implementations.ConstantDeque<", inspect(@for.to_list(deque)) ,">"]
+      def inspect(deque, _opts) do
+        concat ["##{inspect(@for)}<", inspect(@for.to_list(deque)) ,">"]
       end
     end
 end

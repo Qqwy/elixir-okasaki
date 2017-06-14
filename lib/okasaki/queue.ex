@@ -1,5 +1,10 @@
 defmodule Okasaki.Queue do
-  def new(implementation \\ Okasaki.Implementations.ConstantQueue) do
+
+  def new() do
+    implementation = Application.get_env(:okasaki, :default_queue_implementation, Okasaki.Implementations.ConstantQueue)
+    implementation.new()
+  end
+  def new(implementation) do
     implementation.new()
   end
 
