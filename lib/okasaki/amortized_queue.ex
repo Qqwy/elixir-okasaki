@@ -40,7 +40,7 @@ defmodule Okasaki.AmortizedQueue do
     end
   end
 
-  def remove(aqueue = %__MODULE__{left: left, right: right, size: size}) do
+  def remove(_aqueue = %__MODULE__{left: left, right: right, size: size}) do
     [item | left_rest] = left
     result = {item, %__MODULE__{left: left_rest, right: right, size: size - 1}}
     {:ok, result}

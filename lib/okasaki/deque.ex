@@ -27,7 +27,7 @@ defmodule Okasaki.Deque do
   end
 
   @spec size(t) :: non_neg_integer
-  def size(deque = %__MODULE__{size: size}) do
+  def size(_deque = %__MODULE__{size: size}) do
     size
   end
 
