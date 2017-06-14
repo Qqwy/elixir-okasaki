@@ -15,17 +15,17 @@ defmodule Okasaki.Queue do
   defdelegate member?(queue, item), to: Okasaki.Protocols.Queue
   defdelegate size(queue), to: Okasaki.Protocols.Queue
 
-  def take_while(queue, fun), do: take_while(queue, fun, [])
+  def take_while(queue = %queue_impl{}, fun), do: take_while(queue, fun, queue_impl.new())
   defp take_while(queue, fun, accum) do
     case remove(queue) do
       {:ok, {item, altered_queue}} ->
         if fun.(item) do
-          take_while(altered_queue, fun, [item | accum])
+          take_while(altered_queue, fun, insert(accum, item))
         else
-          {:lists.reverse(accum), queue}
+          {accum, queue}
         end
       {:error, :empty} ->
-        {:lists.reverse(accum), queue}
+        {accum, queue}
     end
   end
 end

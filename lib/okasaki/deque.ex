@@ -16,18 +16,18 @@ defmodule Okasaki.Deque do
   defdelegate remove_right(queue), to: Okasaki.Protocols.Deque
   defdelegate size(deque), to: Okasaki.Protocols.Deque
 
-
-  def take_while(queue, fun), do: take_while(queue, fun, [])
-  defp take_while(queue, fun, accum) do
-    case Okasaki.Protocols.Deque.remove_left(queue) do
-      {:ok, {item, altered_queue}} ->
+  def take_while(deque = %deque_impl{}, fun), do: take_while(deque, fun, deque_impl.new())
+  defp take_while(deque, fun, accum) do
+    case remove(deque) do
+      {:ok, {item, altered_deque}} ->
         if fun.(item) do
-          take_while(altered_queue, fun, [item | accum])
+          take_while(altered_deque, fun, insert(accum, item))
         else
-          {:lists.reverse(accum), queue}
+          {accum, deque}
         end
       {:error, :empty} ->
-        {:lists.reverse(accum), queue}
+        {accum, deque}
     end
   end
+
 end
