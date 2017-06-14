@@ -1,9 +1,9 @@
 defmodule Okasaki.DequeTest do
   use ExUnit.Case
 
-  alias Okasaki.Deque
+  alias Okasaki.ConstantDeque, as: Deque
 
-  doctest Okasaki.Deque
+  doctest Okasaki.ConstantDeque
 
   test "creation and to_list" do
     assert Deque.new() |> Deque.to_list() == []

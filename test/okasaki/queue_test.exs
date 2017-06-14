@@ -1,9 +1,9 @@
 defmodule Okasaki.QueueTest do
   use ExUnit.Case
 
-  alias Okasaki.Queue
+  alias Okasaki.ConstantQueue, as: Queue
 
-  doctest Okasaki.Queue
+  doctest Okasaki.ConstantQueue
 
   test "creation and to_list" do
     assert Queue.new() |> Queue.to_list() == []

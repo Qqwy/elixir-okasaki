@@ -1,6 +1,6 @@
-defmodule Okasaki.Queue do
+defmodule Okasaki.ConstantQueue do
   @moduledoc """
-  Okasaki.Queue
+  Okasaki.ConstantQueue
   is a Purely Functional Queue that performs both insertion and removal at guaranteed O(1) (constant) time.
   """
 
