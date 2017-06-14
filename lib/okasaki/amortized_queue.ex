@@ -1,4 +1,4 @@
-defmodule Okasaki.AmortizedQueue do
+defmodule Okasaki.Implementations.AmortizedQueue do
   @moduledoc """
   The standard implementation of a queue as a pair of lists.
 

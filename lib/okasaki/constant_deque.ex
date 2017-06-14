@@ -1,4 +1,4 @@
-defmodule Okasaki.ConstantDeque do
+defmodule Okasaki.Implementations.ConstantDeque do
   defstruct left: [], right: [], lefthat: [], righthat: [], size: 0
   @moduledoc """
   Deque is an implementation of Chris Okasaki's
