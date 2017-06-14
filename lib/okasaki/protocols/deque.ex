@@ -32,5 +32,12 @@ defprotocol Okasaki.Protocols.Deque do
   @doc """
   Checks if a certain element is part of the deque.
   """
+  @spec member?(t, item :: any) :: boolean
   def member?(queue, item)
+
+  @doc """
+  Returns the number of elements currently in the queue.
+  """
+  @spec size(t) :: non_neg_integer
+  def size(deque)
 end

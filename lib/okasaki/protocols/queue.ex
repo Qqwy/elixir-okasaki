@@ -22,4 +22,10 @@ defprotocol Okasaki.Protocols.Queue do
   """
   @spec member?(t, item :: any) :: boolean
   def member?(queue, item)
+
+  @doc """
+  Returns the number of elements currently in the queue.
+  """
+  @spec size(t) :: non_neg_integer
+  def size(queue)
 end

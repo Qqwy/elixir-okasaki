@@ -55,6 +55,11 @@ for module <- [
       def member?(queue, item) do
         @for.member?(queue, item)
       end
+
+      def count(queue) do
+        {:ok, @for.size(queue)}
+      end
+
     end
 end
 
@@ -92,7 +97,11 @@ for module <- [
       end
 
       def member?(deque, item) do
-        {:ok, for.member?(deque, item)}
+        {:ok, @for.member?(deque, item)}
+      end
+
+      def count(deque) do
+        {:ok, @for.size(deque)}
       end
     end
 

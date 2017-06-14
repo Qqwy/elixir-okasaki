@@ -51,7 +51,7 @@ defmodule Okasaki.Implementations.AmortizedQueue do
   end
 
   def member?(queue, item) do
-    element in queue.left or element in queue.right
+    item in queue.left or item in queue.right
   end
 
   defimpl Okasaki.Protocols.Queue do
@@ -59,6 +59,6 @@ defmodule Okasaki.Implementations.AmortizedQueue do
     def remove(queue), do: @for.remove(queue)
     def to_list(queue), do: @for.to_list(queue)
     def member?(queue, item), do: @for.member?(queue, item)
-    end
+    def size(queue), do: @for.size(queue)
   end
 end
