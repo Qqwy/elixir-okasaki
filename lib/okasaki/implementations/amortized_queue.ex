@@ -6,7 +6,7 @@ defmodule Okasaki.Implementations.AmortizedQueue do
   but any particular `remove` might take O(n).
   """
 
-  defstruct [:left, :right, :size]
+  defstruct [left: [], right: [], size: 0]
 
   @opaque t :: %__MODULE__{
     size: integer,
@@ -34,7 +34,7 @@ defmodule Okasaki.Implementations.AmortizedQueue do
   end
 
   @spec remove(t) :: {:ok, {any, t}} | {:error, :empty}
-  def remove(aqueue = %__MODULE__{left: [], right: right}, item) do
+  def remove(aqueue = %__MODULE__{left: [], right: right}) do
     case right do
       [] -> {:error, :empty}
       _ ->

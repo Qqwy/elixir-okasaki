@@ -14,4 +14,5 @@ defmodule Okasaki.Deque do
   defdelegate insert_right(queue, item), to: Okasaki.Protocols.Deque
   defdelegate remove_left(queue), to: Okasaki.Protocols.Deque
   defdelegate remove_right(queue), to: Okasaki.Protocols.Deque
+  defdelegate size(deque), to: Okasaki.Protocols.Deque
 end

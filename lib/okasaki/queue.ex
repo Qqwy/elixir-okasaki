@@ -12,4 +12,5 @@ defmodule Okasaki.Queue do
   defdelegate insert(queue, item), to: Okasaki.Protocols.Queue
   defdelegate remove(queue), to: Okasaki.Protocols.Queue
   defdelegate member?(queue, item), to: Okasaki.Protocols.Queue
+  defdelegate size(queue), to: Okasaki.Protocols.Queue
 end

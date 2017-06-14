@@ -3,10 +3,11 @@
 
 # Implementations for all
 for module <- [
-      Okasaki.Implementations.ConstantDeque,
-
       Okasaki.Implementations.ConstantQueue,
-      Okasaki.Implementations.AmortizedQueue
+      Okasaki.Implementations.AmortizedQueue,
+
+      Okasaki.Implementations.AmortizedDeque,
+      Okasaki.Implementations.ConstantDeque,
     ] do
     defimpl Inspect, for: module do
       import Inspect.Algebra
@@ -65,6 +66,7 @@ end
 
 # Implementations only for deques
 for module <- [
+      Okasaki.Implementations.AmortizedDeque,
       Okasaki.Implementations.ConstantDeque,
     ] do
 
@@ -104,5 +106,4 @@ for module <- [
         {:ok, @for.size(deque)}
       end
     end
-
 end

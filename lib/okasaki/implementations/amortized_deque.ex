@@ -6,7 +6,7 @@ defmodule Okasaki.Implementations.AmortizedDeque do
   but any particular `remove` might take O(n).
   """
 
-  defstruct [:left, :right, :size]
+  defstruct [left: [], right: [], size: 0]
 
   @opaque t :: %__MODULE__{
     size: integer,
@@ -39,7 +39,7 @@ defmodule Okasaki.Implementations.AmortizedDeque do
   end
 
   @spec remove_left(t) :: {:ok, {any, t}} | {:error, :empty}
-  def remove_left(adeque = %__MODULE__{left: [], right: right}, item) do
+  def remove_left(adeque = %__MODULE__{left: [], right: right}) do
     case right do
       [] -> {:error, :empty}
       _ ->
@@ -56,7 +56,7 @@ defmodule Okasaki.Implementations.AmortizedDeque do
   end
 
   @spec remove_right(t) :: {:ok, {any, t}} | {:error, :empty}
-  def remove_right(adeque = %__MODULE__{left: left, right: []}, item) do
+  def remove_right(adeque = %__MODULE__{left: left, right: []}) do
     case left do
       [] -> {:error, :empty}
       _ ->
