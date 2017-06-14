@@ -62,4 +62,11 @@ defmodule Okasaki.Implementations.ConstantQueue do
     [rhead | rtail] = right
     [hd(left) | rot(tl(left), rtail, [rhead | accum])]
   end
+
+  defimpl Okasaki.Protocols.Queue do
+    def new(), do: @for.new()
+    def insert(queue, item), do: @for.insert(queue, item)
+    def remove(queue), do: @for.remove(queue)
+    def to_list(queue), do: @for.to_list(queue)
+  end
 end

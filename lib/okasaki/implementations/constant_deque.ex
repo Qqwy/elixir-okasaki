@@ -115,4 +115,21 @@ defmodule Okasaki.Implementations.ConstantDeque do
 
   defp safe_tl([]), do: []
   defp safe_tl(list), do: tl(list)
+
+
+  defimpl Okasaki.Protocols.Queue do
+    def insert(queue, item), do: @for.insert_right(queue, item)
+    def remove(queue), do: @for.remove_left(queue)
+    def to_list(queue), do: @for.to_list(queue)
+  end
+
+  defimpl Okasaki.Protocols.Deque do
+    def insert_left(deque, item), do: @for.insert_left(deque, item)
+    def remove_left(deque), do: @for.remove_left(deque)
+    def insert_right(deque, item), do: @for.insert_right(deque, item)
+    def remove_right(deque), do: @for.remove_right(deque)
+    def to_list(deque), do: @for.to_list(deque)
+  end
+
+
 end

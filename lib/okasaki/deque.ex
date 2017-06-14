@@ -1,0 +1,12 @@
+defmodule Okasaki.Deque do
+
+  def new(implementation \\ Okasaki.Implementations.ConstantQueue) do
+    implementation.new()
+  end
+
+  defdelegate to_list(queue), to: Okasaki.Protocols.Deque
+  defdelegate insert_left(queue, item), to: Okasaki.Protocols.Deque
+  defdelegate insert_right(queue, item), to: Okasaki.Protocols.Deque
+  defdelegate remove_left(queue), to: Okasaki.Protocols.Deque
+  defdelegate remove_right(queue), to: Okasaki.Protocols.Deque
+end

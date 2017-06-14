@@ -24,6 +24,10 @@ defmodule Okasaki.Implementations.AmortizedQueue do
     size
   end
 
+  def to_list(%__MODULE__{left: left, right: right}) do
+    left ++ :lists.reverse(right)
+  end
+
   @spec insert(t, any) :: t
   def insert(aqueue, item) do
     %__MODULE__{left: aqueue.left, right: [item | aqueue.right], size: aqueue.size + 1}
@@ -44,5 +48,12 @@ defmodule Okasaki.Implementations.AmortizedQueue do
     [item | left_rest] = left
     result = {item, %__MODULE__{left: left_rest, right: right, size: size - 1}}
     {:ok, result}
+  end
+
+
+  defimpl Okasaki.Protocols.Queue do
+    def insert(queue, item), do: @for.insert(queue, item)
+    def remove(queue), do: @for.remove(queue)
+    def to_list(queue), do: @for.to_list(queue)
   end
 end
