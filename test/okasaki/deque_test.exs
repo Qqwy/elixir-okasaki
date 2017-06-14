@@ -10,11 +10,9 @@ defmodule Okasaki.DequeTest do
         Okasaki.Implementations.ConstantDeque,
       ] do
 
-
       test "#{impl} creation and to_list" do
         assert Deque.new(unquote(impl)) |> Deque.to_list() == []
       end
-
 
       test "#{impl} size" do
         deque =

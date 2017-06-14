@@ -49,5 +49,13 @@ defmodule Okasaki.QueueTest do
         assert val == 1
         assert Queue.to_list(queue_rest) == [2,3]
       end
+
+      test "#{impl} take_while" do
+        {result, resulting_queue} =
+          [1,2,3,4]
+          |> Enum.into(%Okasaki.Implementations.AmortizedQueue{})
+          |> Okasaki.Queue.take_while(fn x -> false end)
+        assert result == []
+      end
   end
 end
