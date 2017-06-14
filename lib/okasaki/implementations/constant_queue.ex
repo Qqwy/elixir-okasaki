@@ -49,7 +49,7 @@ defmodule Okasaki.Implementations.ConstantQueue do
     item in queue.left or item in queue.right
   end
 
-  defp make_queue(left, right, lefthat = [], size) do
+  defp make_queue(left, right, _lefthat = [], size) do
     leftprime = rot(left, right, [])
     %__MODULE__{left: leftprime, right: [], lefthat: leftprime, size: size}
   end
