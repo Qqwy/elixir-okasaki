@@ -5,12 +5,20 @@ defmodule Okasaki.DequeTest do
 
   doctest Okasaki.Deque
 
-  test "the truth" do
-    assert 1 + 1 == 2
-  end
-
   test "creation and to_list" do
     assert Deque.new() |> Deque.to_list() == []
+  end
+
+
+  test "size" do
+    deque =
+      Deque.new()
+      |> Deque.insert_right(1)
+      |> Deque.insert_right(2)
+      |> Deque.insert_right(3)
+      |> Deque.insert_right(4)
+      |> Deque.insert_right(5)
+    assert Deque.size(deque) == 5
   end
 
   test "insert_left" do
