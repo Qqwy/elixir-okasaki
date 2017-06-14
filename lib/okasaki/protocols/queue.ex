@@ -16,4 +16,10 @@ defprotocol Okasaki.Protocols.Queue do
   """
   @spec to_list(t) :: list
   def to_list(queue)
+
+  @doc """
+  Checks if a certain element is part of the queue.
+  """
+  @spec member?(t, item :: any) :: boolean
+  def member?(queue, item)
 end

@@ -45,6 +45,10 @@ defmodule Okasaki.Implementations.ConstantQueue do
     end
   end
 
+  def member?(queue, item) do
+    element in queue.left or element in queue.right
+  end
+
   defp make_queue(left, right, lefthat = [], size) do
     leftprime = rot(left, right, [])
     %__MODULE__{left: leftprime, right: [], lefthat: leftprime, size: size}
@@ -68,5 +72,6 @@ defmodule Okasaki.Implementations.ConstantQueue do
     def insert(queue, item), do: @for.insert(queue, item)
     def remove(queue), do: @for.remove(queue)
     def to_list(queue), do: @for.to_list(queue)
+    def member?(queue, item), do: @for.member?(queue, item)
   end
 end

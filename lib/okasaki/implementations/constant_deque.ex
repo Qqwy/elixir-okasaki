@@ -77,6 +77,11 @@ defmodule Okasaki.Implementations.ConstantDeque do
     {:ok, result}
   end
 
+  @spec member?(t, item :: any) :: boolean
+  def member?(queue, item) do
+    element in queue.left or element in queue.right
+  end
+
   defp makedeque(left, right, _lefthat, _righthat, size) when (length(left) > (@c * length(right) + 1)) do
     n = div(length(left) + length(right), 2)
     lprime = Enum.take(left, n)
@@ -121,6 +126,7 @@ defmodule Okasaki.Implementations.ConstantDeque do
     def insert(queue, item), do: @for.insert_right(queue, item)
     def remove(queue), do: @for.remove_left(queue)
     def to_list(queue), do: @for.to_list(queue)
+    def member?(queue, item), do: @for.member?(queue, item)
   end
 
   defimpl Okasaki.Protocols.Deque do
@@ -129,7 +135,6 @@ defmodule Okasaki.Implementations.ConstantDeque do
     def insert_right(deque, item), do: @for.insert_right(deque, item)
     def remove_right(deque), do: @for.remove_right(deque)
     def to_list(deque), do: @for.to_list(deque)
+    def member?(queue, item), do: @for.member?(queue, item)
   end
-
-
 end

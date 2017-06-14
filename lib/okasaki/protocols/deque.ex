@@ -28,4 +28,9 @@ defprotocol Okasaki.Protocols.Deque do
   """
   @spec to_list(t) :: list
   def to_list(deque)
+
+  @doc """
+  Checks if a certain element is part of the deque.
+  """
+  def member?(queue, item)
 end

@@ -50,10 +50,15 @@ defmodule Okasaki.Implementations.AmortizedQueue do
     {:ok, result}
   end
 
+  def member?(queue, item) do
+    element in queue.left or element in queue.right
+  end
 
   defimpl Okasaki.Protocols.Queue do
     def insert(queue, item), do: @for.insert(queue, item)
     def remove(queue), do: @for.remove(queue)
     def to_list(queue), do: @for.to_list(queue)
+    def member?(queue, item), do: @for.member?(queue, item)
+    end
   end
 end
