@@ -68,5 +68,14 @@ defmodule Okasaki.DequeTest do
         assert val == 1
         assert Deque.to_list(deque_rest) == [3,2]
       end
+
+
+      test "Insertable and Extractable protocol implementations for #{impl}" do
+        {:ok, res} = Okasaki.Queue.new() |> Insertable.insert(10);
+        {:ok, res} = Insertable.insert(res, 20);
+        {:ok, {item, res}} = Extractable.extract(res)
+        assert item == 10
+        assert Extractable.extract(res) == {:ok, {20, Okasaki.Queue.new()}}
+      end
   end
 end

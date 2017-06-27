@@ -60,7 +60,21 @@ for module <- [
       def count(queue) do
         {:ok, @for.size(queue)}
       end
+    end
 
+    defimpl Insertable, for: module do
+      def insert(collection, item) do
+        {:ok, @for.insert(collection, item)}
+      end
+    end
+
+    defimpl Extractable, for: module do
+      def extract(collection) do
+        case @for.remove(collection) do
+          {:error, :empty} -> :error
+          {:ok, {item, collection}} -> {:ok, {item, collection}}
+        end
+      end
     end
 end
 
@@ -104,6 +118,21 @@ for module <- [
 
       def count(deque) do
         {:ok, @for.size(deque)}
+      end
+    end
+
+    defimpl Insertable, for: module do
+      def insert(collection, item) do
+        {:ok, @for.insert_right(collection, item)}
+      end
+    end
+
+    defimpl Extractable, for: module do
+      def extract(collection) do
+        case @for.remove_left(collection) do
+          {:error, :empty} -> :error
+          {:ok, {item, collection}} -> {:ok, {item, collection}}
+        end
       end
     end
 end

@@ -51,11 +51,19 @@ defmodule Okasaki.QueueTest do
       end
 
       test "#{impl} take_while" do
-        {result, resulting_queue} =
+        {result, _resulting_queue} =
           [1,2,3,4]
           |> Enum.into(%unquote(impl){})
           |> Okasaki.Queue.take_while(fn x -> x < 3 end)
         assert result == Enum.into([1,2], %unquote(impl){})
+      end
+
+      test "Insertable and Extractable protocol implementations for #{impl}" do
+        {:ok, res} = Okasaki.Queue.new() |> Insertable.insert(10);
+        {:ok, res} = Insertable.insert(res, 20);
+        {:ok, {item, res}} = Extractable.extract(res)
+        assert item == 10
+        assert Extractable.extract(res) == {:ok, {20, Okasaki.Queue.new()}}
       end
   end
 end
