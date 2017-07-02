@@ -29,8 +29,9 @@ defmodule Okasaki.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:insertable, "~> 0.1.0"},
-      {:extractable, "~> 0.1.0"},
+      {:insertable, "~> 0.2.0"},
+      {:extractable, "~> 0.2.0"},
+      {:fun_land, "~> 0.9.0"}
     ]
   end
 end

@@ -14,8 +14,8 @@ defmodule Okasaki.Implementations.ConstantQueue do
     lefthat: list
   }
 
-  @spec new() :: t
-  def new do
+  @spec empty(opts :: keyword) :: t
+  def empty(_opts \\ []) do
     %__MODULE__{}
   end
 
@@ -68,7 +68,6 @@ defmodule Okasaki.Implementations.ConstantQueue do
   end
 
   defimpl Okasaki.Protocols.Queue do
-    def new(), do: @for.new()
     def insert(queue, item), do: @for.insert(queue, item)
     def remove(queue), do: @for.remove(queue)
     def to_list(queue), do: @for.to_list(queue)

@@ -14,12 +14,12 @@ defmodule Okasaki.QueueTest do
       ] do
 
       test "#{impl} creation and to_list" do
-        assert Queue.new(unquote(impl)) |> Queue.to_list() == []
+        assert Queue.empty(implementation: unquote(impl)) |> Queue.to_list() == []
       end
 
       test "#{impl} size" do
         queue =
-          Queue.new(unquote(impl))
+          Queue.empty(implementation: unquote(impl))
           |> Queue.insert(1)
           |> Queue.insert(2)
           |> Queue.insert(3)
@@ -30,7 +30,7 @@ defmodule Okasaki.QueueTest do
 
       test "#{impl} insert" do
         queue =
-          Queue.new(unquote(impl))
+          Queue.empty(implementation: unquote(impl))
           |> Queue.insert(1)
           |> Queue.insert(2)
           |> Queue.insert(3)
@@ -41,7 +41,7 @@ defmodule Okasaki.QueueTest do
 
       test "#{impl} remove" do
         queue =
-          Queue.new(unquote(impl))
+          Queue.empty(implementation: unquote(impl))
           |> Queue.insert(1)
           |> Queue.insert(2)
           |> Queue.insert(3)
@@ -59,11 +59,11 @@ defmodule Okasaki.QueueTest do
       end
 
       test "Insertable and Extractable protocol implementations for #{impl}" do
-        {:ok, res} = Okasaki.Queue.new() |> Insertable.insert(10);
+        {:ok, res} = Okasaki.Queue.empty(implementation: unquote(impl)) |> Insertable.insert(10);
         {:ok, res} = Insertable.insert(res, 20);
         {:ok, {item, res}} = Extractable.extract(res)
         assert item == 10
-        assert Extractable.extract(res) == {:ok, {20, Okasaki.Queue.new()}}
+        assert Extractable.extract(res) == {:ok, {20, Okasaki.Queue.empty(implementation: unquote(impl))}}
       end
   end
 end

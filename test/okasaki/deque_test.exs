@@ -11,12 +11,12 @@ defmodule Okasaki.DequeTest do
       ] do
 
       test "#{impl} creation and to_list" do
-        assert Deque.new(unquote(impl)) |> Deque.to_list() == []
+        assert Deque.empty(implementation: unquote(impl)) |> Deque.to_list() == []
       end
 
       test "#{impl} size" do
         deque =
-          Deque.new(unquote(impl))
+          Deque.empty(implementation: unquote(impl))
           |> Deque.insert_right(1)
           |> Deque.insert_right(2)
           |> Deque.insert_right(3)
@@ -27,7 +27,7 @@ defmodule Okasaki.DequeTest do
 
       test "#{impl} insert_left" do
         deque =
-          Deque.new(unquote(impl))
+          Deque.empty(implementation: unquote(impl))
           |> Deque.insert_left(1)
           |> Deque.insert_left(2)
           |> Deque.insert_left(3)
@@ -38,7 +38,7 @@ defmodule Okasaki.DequeTest do
 
       test "#{impl} insert_right" do
         deque =
-          Deque.new(unquote(impl))
+          Deque.empty(implementation: unquote(impl))
           |> Deque.insert_right(1)
           |> Deque.insert_right(2)
           |> Deque.insert_right(3)
@@ -49,7 +49,7 @@ defmodule Okasaki.DequeTest do
 
       test "#{impl} remove_left" do
         deque =
-          Deque.new(unquote(impl))
+          Deque.empty(implementation: unquote(impl))
           |> Deque.insert_left(1)
           |> Deque.insert_left(2)
           |> Deque.insert_left(3)
@@ -60,7 +60,7 @@ defmodule Okasaki.DequeTest do
 
       test "#{impl} remove_right" do
         deque =
-          Deque.new(unquote(impl))
+          Deque.empty(implementation: unquote(impl))
           |> Deque.insert_left(1)
           |> Deque.insert_left(2)
           |> Deque.insert_left(3)
@@ -71,11 +71,11 @@ defmodule Okasaki.DequeTest do
 
 
       test "Insertable and Extractable protocol implementations for #{impl}" do
-        {:ok, res} = Okasaki.Queue.new() |> Insertable.insert(10);
+        {:ok, res} = Okasaki.Queue.empty(implementation: unquote(impl)) |> Insertable.insert(10);
         {:ok, res} = Insertable.insert(res, 20);
         {:ok, {item, res}} = Extractable.extract(res)
         assert item == 10
-        assert Extractable.extract(res) == {:ok, {20, Okasaki.Queue.new()}}
+        assert Extractable.extract(res) == {:ok, {20, Okasaki.Queue.empty(implementation: unquote(impl))}}
       end
   end
 end

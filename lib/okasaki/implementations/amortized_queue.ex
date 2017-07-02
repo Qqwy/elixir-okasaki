@@ -14,8 +14,8 @@ defmodule Okasaki.Implementations.AmortizedQueue do
     right: list
   }
 
-  @spec new() :: t
-  def new do
+  @spec empty(opts :: keyword) :: t
+  def empty(_opts \\ []) do
     %__MODULE__{}
   end
 

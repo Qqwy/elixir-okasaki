@@ -1,12 +1,12 @@
 defmodule Okasaki.Deque do
 
-  def new() do
-    implementation = Application.get_env(:okasaki, :default_deque_implementation, Okasaki.Implementations.ConstantQueue)
-    implementation.new()
+  def empty(opts \\ []) do
+    implementation = Keyword.get(opts, :implementation, Application.get_env(:okasaki, :default_deque_implementation, Okasaki.Implementations.ConstantDeque) )
+    implementation.empty()
   end
 
-  def new(implementation) do
-    implementation.new()
+  def new(enumerable \\ [], opts \\ []) do
+    Enum.into(enumerable, empty(opts))
   end
 
   defdelegate to_list(queue), to: Okasaki.Protocols.Deque
@@ -16,7 +16,7 @@ defmodule Okasaki.Deque do
   defdelegate remove_right(queue), to: Okasaki.Protocols.Deque
   defdelegate size(deque), to: Okasaki.Protocols.Deque
 
-  def take_while(deque = %deque_impl{}, fun), do: take_while(deque, fun, deque_impl.new())
+  def take_while(deque = %deque_impl{}, fun), do: take_while(deque, fun, deque_impl.empty())
   defp take_while(deque, fun, accum) do
     case remove_right(deque) do
       {:ok, {item, altered_deque}} ->

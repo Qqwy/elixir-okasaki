@@ -21,8 +21,8 @@ defmodule Okasaki.Implementations.ConstantDeque do
     righthat: list
   }
 
-  @spec new() :: t
-  def new() do
+  @spec empty(opts :: keyword) :: t
+  def empty(_opts \\ []) do
     %__MODULE__{}
   end
 
@@ -51,7 +51,7 @@ defmodule Okasaki.Implementations.ConstantDeque do
   def remove_left(%__MODULE__{left: left, right: right}) when length(left) == 0 do
     case right do
       [] -> {:error, :empty}
-      [item | _] -> {:ok, {item, new()}}
+      [item | _] -> {:ok, {item, empty()}}
     end
   end
 
@@ -67,7 +67,7 @@ defmodule Okasaki.Implementations.ConstantDeque do
   def remove_right(%__MODULE__{left: left, right: right}) when length(right) == 0 do
     case left do
       [] -> {:error, :empty}
-      [item | _] -> {:ok, {item, new()}}
+      [item | _] -> {:ok, {item, empty()}}
     end
   end
 
