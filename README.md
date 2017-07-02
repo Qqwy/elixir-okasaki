@@ -1,6 +1,9 @@
 # Okasaki
 
-**TODO: Add description**
+[![hex.pm version](https://img.shields.io/hexpm/v/okasaki.svg)](https://hex.pm/packages/okasaki)
+[![Build Status](https://travis-ci.org/Qqwy/elixir_okasaki.svg?branch=master)](https://travis-ci.org/Qqwy/elixir_okasaki)
+
+Well-structured Queues for Elixir, offering a common interface with multiple implementations with varying performance guarantees that can be switched in your configuration.
 
 ## Installation
 
@@ -9,11 +12,9 @@ by adding `okasaki` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:okasaki, "~> 0.1.0"}]
+  [{:okasaki, "~> 0.2.0"}]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/okasaki](https://hexdocs.pm/okasaki).
+Documentation can be found at [https://hexdocs.pm/okasaki](https://hexdocs.pm/okasaki).
 

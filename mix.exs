@@ -3,11 +3,16 @@ defmodule Okasaki.Mixfile do
 
   def project do
     [app: :okasaki,
-     version: "0.1.0",
-     elixir: "~> 1.4",
+     version: "0.2.0",
+     elixir: "~> 1.3",
+     name: "Okasaki",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps()]
+     deps: deps(),
+     description: description(),
+     source_url: "https://github.com/Qqwy/elixir_okasaki",
+     package: package()
+    ]
   end
 
   # Configuration for the OTP application
@@ -29,9 +34,29 @@ defmodule Okasaki.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
+      {:ex_doc, "~> 0.14", only: :dev},
+
       {:insertable, "~> 0.2.0"},
       {:extractable, "~> 0.2.0"},
-      {:fun_land, "~> 0.9.0"}
+      {:fun_land, "~> 0.9.0"},
     ]
   end
+
+  defp description do
+    """
+    Well-structured Queues for Elixir, offering a common interface with multiple implementations with varying performance guarantees that can be switched in your configuration.
+    """
+  end
+
+  defp package() do
+    [
+      name: :okasaki,
+      files: ["lib", "mix.exs", "README*"],
+      maintainers: ["Qqwy/Wiebe-Marten Wijnja"],
+      licenses: ["Apache 2.0"],
+      links: %{"GitHub" => "https://github.com/Qqwy/elixir_okasaki"}
+    ]
+  end
+
+
 end
