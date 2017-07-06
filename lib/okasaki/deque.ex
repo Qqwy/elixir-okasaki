@@ -15,6 +15,7 @@ defmodule Okasaki.Deque do
   defdelegate remove_left(queue), to: Okasaki.Protocols.Deque
   defdelegate remove_right(queue), to: Okasaki.Protocols.Deque
   defdelegate size(deque), to: Okasaki.Protocols.Deque
+  defdelegate empty?(queue), to: Okasaki.Protocols.Deque
 
   def take_while(deque = %deque_impl{}, fun), do: take_while(deque, fun, deque_impl.empty())
   defp take_while(deque, fun, accum) do

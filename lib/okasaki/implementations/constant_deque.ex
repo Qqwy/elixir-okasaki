@@ -31,6 +31,10 @@ defmodule Okasaki.Implementations.ConstantDeque do
     size
   end
 
+  @spec empty?(t) :: boolean
+  def empty?(%__MODULE__{left: [], right: []}), do: true
+  def empty?(%__MODULE__{}), do: false
+
   @spec to_list(t) :: list
   def to_list(deque) do
     deque.left ++ :lists.reverse(deque.right)
@@ -128,6 +132,7 @@ defmodule Okasaki.Implementations.ConstantDeque do
     def to_list(queue), do: @for.to_list(queue)
     def member?(queue, item), do: @for.member?(queue, item)
     def size(queue), do: @for.size(queue)
+    def empty?(queue), do: @for.empty?(queue)
   end
 
   defimpl Okasaki.Protocols.Deque do
@@ -138,5 +143,6 @@ defmodule Okasaki.Implementations.ConstantDeque do
     def to_list(deque), do: @for.to_list(deque)
     def member?(queue, item), do: @for.member?(queue, item)
     def size(queue), do: @for.size(queue)
+    def empty?(queue), do: @for.empty?(queue)
   end
 end

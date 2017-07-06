@@ -28,4 +28,10 @@ defprotocol Okasaki.Protocols.Queue do
   """
   @spec size(t) :: non_neg_integer
   def size(queue)
+
+  @doc """
+  True if the queue is empty.
+  """
+  @spec empty?(t) :: boolean
+  def empty?(deque)
 end

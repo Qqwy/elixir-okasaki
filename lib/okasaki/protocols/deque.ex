@@ -40,4 +40,10 @@ defprotocol Okasaki.Protocols.Deque do
   """
   @spec size(t) :: non_neg_integer
   def size(deque)
+
+  @doc """
+  True if the deque is empty.
+  """
+  @spec empty?(t) :: boolean
+  def empty?(deque)
 end

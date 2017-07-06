@@ -13,6 +13,7 @@ defmodule Okasaki.Queue do
   defdelegate remove(queue), to: Okasaki.Protocols.Queue
   defdelegate member?(queue, item), to: Okasaki.Protocols.Queue
   defdelegate size(queue), to: Okasaki.Protocols.Queue
+  defdelegate empty?(queue), to: Okasaki.Protocols.Queue
 
   def take_while(queue = %queue_impl{}, fun), do: take_while(queue, fun, queue_impl.empty())
   defp take_while(queue, fun, accum) do
