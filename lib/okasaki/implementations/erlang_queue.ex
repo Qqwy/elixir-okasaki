@@ -7,6 +7,17 @@ defmodule Okasaki.Implementations.ErlangQueue do
   @enforce_keys :contents
   defstruct [:contents]
 
+  @opaque t :: %__MODULE__{
+    contents: {list, list}
+  }
+
+  use FunLand.Mappable
+  @spec map(t, (any -> any)) :: t
+  def map(queue = %__MODULE__{contents: contents}, fun) do
+    changes = :lists.map(fun, :queue.to_list(contents))
+    %__MODULE__{queue | contents: :queue.from_list(changes)}
+  end
+
   def empty(_opts \\ []) do
     %ErlangQueue{contents: :queue.new()}
   end

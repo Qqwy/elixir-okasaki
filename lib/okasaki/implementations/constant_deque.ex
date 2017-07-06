@@ -21,6 +21,17 @@ defmodule Okasaki.Implementations.ConstantDeque do
     righthat: list
   }
 
+  use FunLand.Mappable
+  @spec map(t, (any -> any)) :: t
+  def map(deque = %__MODULE__{left: left, right: right, lefthat: lefthat, righthat: righthat}, fun) do
+    %__MODULE__{deque |
+                left: :lists.map(fun, left),
+                right: :lists.map(fun, right),
+                lefthat: :lists.map(fun, lefthat),
+                righthat: :lists.map(fun, righthat)
+    }
+  end
+
   @spec empty(opts :: keyword) :: t
   def empty(_opts \\ []) do
     %__MODULE__{}

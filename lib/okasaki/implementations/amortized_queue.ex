@@ -14,6 +14,12 @@ defmodule Okasaki.Implementations.AmortizedQueue do
     right: list
   }
 
+  use FunLand.Mappable
+  @spec map(t, (any -> any)) :: t
+  def map(queue = %__MODULE__{left: left, right: right}, fun) do
+    %__MODULE__{queue | left: :lists.map(fun, left), right: :lists.map(fun, right)}
+  end
+
   @spec empty(opts :: keyword) :: t
   def empty(_opts \\ []) do
     %__MODULE__{}

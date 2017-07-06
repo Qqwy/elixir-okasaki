@@ -7,8 +7,19 @@ defmodule Okasaki.Implementations.ErlangDeque do
   @enforce_keys :contents
   defstruct [:contents]
 
+  @opaque t :: %__MODULE__{
+    contents: {list, list}
+  }
+
   # Note that the notions of 'right' and 'left'
   # are the opposite of what `:queue` considers them.
+
+  use FunLand.Mappable
+  @spec map(t, (any -> any)) :: t
+  def map(deque = %__MODULE__{contents: contents}, fun) do
+    changes = :lists.map(fun, :queue.to_list(contents))
+    %__MODULE__{deque | contents: :queue.from_list(changes)}
+  end
 
   def empty(_opts \\ []) do
     %ErlangDeque{contents: :queue.new()}

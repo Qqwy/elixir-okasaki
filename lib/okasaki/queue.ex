@@ -1,6 +1,6 @@
 defmodule Okasaki.Queue do
   def empty(opts \\ []) do
-    implementation = Keyword.get(opts, :implementation, Application.get_env(:okasaki, :default_queue_implementation, Okasaki.Implementations.ConstantDeque) )
+    implementation = Keyword.get(opts, :implementation, Application.get_env(:okasaki, :default_queue_implementation, Okasaki.Implementations.ConstantQueue) )
     implementation.empty()
   end
 
