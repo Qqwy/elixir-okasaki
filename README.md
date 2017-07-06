@@ -92,7 +92,7 @@ without needing to decypher the internal storage mechanisms.
 
 ## Changelog
 
-- 0.4.0 Backwards-compatible: 
+- 1.0.0 Backwards-compatible: 
     - Adding `ErlangDeque` and `ErlangQueue` implementations that wrap the `:queue` module.
     - Implementing `FunLand.Mappable`
     - Improving documentation/Readme.
