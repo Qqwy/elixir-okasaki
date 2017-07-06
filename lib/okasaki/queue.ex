@@ -16,7 +16,7 @@ defmodule Okasaki.Queue do
   config :okasaki, default_queue_implementation: Queue.Implementation.Module.Name
   ```
 
-  By default, #{inspect(@default_queue_implementation)} is used.
+  By default, `#{inspect(@default_queue_implementation)}` is used.
   """
   def empty(opts \\ []) do
     implementation = Keyword.get(opts, :implementation, Application.get_env(:okasaki, :default_queue_implementation, @default_queue_implementation) )

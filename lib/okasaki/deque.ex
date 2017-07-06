@@ -16,7 +16,7 @@ defmodule Okasaki.Deque do
   config :okasaki, default_deque_implementation: Deque.Implementation.Module.Name
   ```
 
-  By default, #{inspect(@default_deque_implementation)} is used.
+  By default, `#{inspect(@default_deque_implementation)}` is used.
   """
   def empty(opts \\ []) do
     implementation = Keyword.get(opts, :implementation, Application.get_env(:okasaki, :default_deque_implementation, Okasaki.Implementations.ConstantDeque) )

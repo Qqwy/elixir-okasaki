@@ -107,7 +107,7 @@ by adding `okasaki` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:okasaki, "~> 0.4.0"}]
+  [{:okasaki, "~> 1.0.0"}]
 end
 ```
 
