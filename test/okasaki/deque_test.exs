@@ -8,6 +8,7 @@ defmodule Okasaki.DequeTest do
   for impl <- [
         Okasaki.Implementations.AmortizedDeque,
         Okasaki.Implementations.ConstantDeque,
+        Okasaki.Implementations.ErlangDeque,
       ] do
 
       test "#{impl} creation and to_list" do

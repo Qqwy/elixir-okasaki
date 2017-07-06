@@ -9,6 +9,7 @@ for module <- [
 
       Okasaki.Implementations.AmortizedDeque,
       Okasaki.Implementations.ConstantDeque,
+      Okasaki.Implementations.ErlangDeque,
     ] do
     defimpl Inspect, for: module do
       import Inspect.Algebra
@@ -84,6 +85,7 @@ end
 for module <- [
       Okasaki.Implementations.AmortizedDeque,
       Okasaki.Implementations.ConstantDeque,
+      Okasaki.Implementations.ErlangDeque,
     ] do
 
     defimpl Collectable, for: module do
