@@ -98,6 +98,5 @@ defmodule Okasaki.Implementations.AmortizedDeque do
     def member?(queue, item), do: @for.member?(queue, item)
     def size(queue), do: @for.size(queue)
     def empty?(queue), do: @for.empty?(queue)
-    end
   end
 end

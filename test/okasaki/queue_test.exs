@@ -28,6 +28,13 @@ defmodule Okasaki.QueueTest do
         assert Queue.size(queue) == 5
       end
 
+      test "#{impl} empty?" do
+        queue = Queue.empty(implementation: unquote(impl))
+        assert Queue.empty?(queue)
+        queue2 = Queue.new([1,2,3])
+        refute Queue.empty?(queue2)
+      end
+
       test "#{impl} insert" do
         queue =
           Queue.empty(implementation: unquote(impl))

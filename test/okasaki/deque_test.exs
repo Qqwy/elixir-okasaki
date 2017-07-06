@@ -25,6 +25,13 @@ defmodule Okasaki.DequeTest do
         assert Deque.size(deque) == 5
       end
 
+      test "#{impl} empty?" do
+        deque = Deque.empty(implementation: unquote(impl))
+        assert Deque.empty?(deque)
+        deque2 = Deque.new([1,2,3])
+        refute Deque.empty?(deque2)
+      end
+
       test "#{impl} insert_left" do
         deque =
           Deque.empty(implementation: unquote(impl))
