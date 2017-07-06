@@ -6,8 +6,9 @@ defmodule Okasaki.QueueTest do
   doctest Queue
 
   for impl <- [
-        Okasaki.Implementations.ConstantQueue,
         Okasaki.Implementations.AmortizedQueue,
+        Okasaki.Implementations.ConstantQueue,
+        Okasaki.Implementations.ErlangQueue,
 
         Okasaki.Implementations.AmortizedDeque,
         Okasaki.Implementations.ConstantDeque,
@@ -60,9 +61,9 @@ defmodule Okasaki.QueueTest do
       test "#{impl} take_while" do
         {result, _resulting_queue} =
           [1,2,3,4]
-          |> Enum.into(%unquote(impl){})
+          |> Enum.into(Queue.empty(implementation: unquote(impl)))
           |> Okasaki.Queue.take_while(fn x -> x < 3 end)
-        assert result == Enum.into([1,2], %unquote(impl){})
+        assert result == Enum.into([1,2], Queue.empty(implementation: unquote(impl)))
       end
 
       test "Insertable and Extractable protocol implementations for #{impl}" do

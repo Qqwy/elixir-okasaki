@@ -3,8 +3,9 @@
 
 # Implementations for all
 for module <- [
-      Okasaki.Implementations.ConstantQueue,
       Okasaki.Implementations.AmortizedQueue,
+      Okasaki.Implementations.ConstantQueue,
+      Okasaki.Implementations.ErlangQueue,
 
       Okasaki.Implementations.AmortizedDeque,
       Okasaki.Implementations.ConstantDeque,
@@ -21,8 +22,9 @@ end
 
 # Implementations only for queues
 for module <- [
-      Okasaki.Implementations.ConstantQueue,
       Okasaki.Implementations.AmortizedQueue,
+      Okasaki.Implementations.ConstantQueue,
+      Okasaki.Implementations.ErlangQueue,
     ] do
 
     defimpl Collectable, for: module do

@@ -6,7 +6,6 @@ defmodule Okasaki.Implementations.ConstantQueue do
 
   defstruct left: [], right: [], lefthat: [], size: 0
 
-
   @opaque t :: %__MODULE__{
     size: integer,
     left: list,
