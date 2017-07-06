@@ -10,18 +10,29 @@ Well-structured Queues for Elixir, offering a common interface with multiple imp
 ```elixir
     iex> queue =  Okasaki.Queue.new([1,2,3,4])
     #Okasaki.Implementations.ConstantQueue<[1, 2, 3, 4]>
-    #Okasaki.Implementations.ConstantQueue<[1, 2, 3, 4]>
     iex> queue = Okasaki.Queue.insert(queue, 42)
     #Okasaki.Implementations.ConstantQueue<[1, 2, 3, 4, 42]>
     iex> Okasaki.Queue.empty?(queue)
     false
     iex> Okasaki.Queue.size(queue)
     5
-    iex> Okasaki.Queue.remove(queue) 
-    {:ok, {1, #Okasaki.Implementations.ConstantQueue<[2, 3, 4, 42]>}}
+    iex> {:ok, {item, rest_queue}} = Okasaki.Queue.remove(queue) 
+    iex> item
+    1
+    iex> rest_queue
+    #Okasaki.Implementations.ConstantQueue<[2, 3, 4, 42]>
 ```
 
 ## Built-In Implementations:
+
+Switching between implementations can be done once your application is up-and-running after benchmarking on a application-configuration-wide level, using e.g.:
+
+```elixir
+config :okasaki, default_queue_implementation: Okasaki.Implementations.ErlangQueue,
+                 default_deque_implementation: Okasaki.Implementations.AmortizedDeque
+```
+Or on a per-call basis, using `Okasaki.Queue.new([1,2,3], implementation: Okasaki.Implementations.ConstantQueue)`
+
 
 ### AmortizedQueue/AmortizedDeque
 
