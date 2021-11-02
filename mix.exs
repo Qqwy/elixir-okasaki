@@ -36,8 +36,8 @@ defmodule Okasaki.Mixfile do
     [
       {:ex_doc, "~> 0.14", only: :dev},
 
-      {:insertable, "~> 0.2.0"},
-      {:extractable, "~> 0.2.0"},
+      {:insertable, "~> 1.0"},
+      {:extractable, "~> 1.0"},
       {:fun_land, "~> 0.10.0"},
     ]
   end
