@@ -11,7 +11,9 @@ defmodule Okasaki.Implementations.ErlangQueue do
     contents: {list, list}
   }
 
-  use FunLand.Mappable
+  if Code.ensure_loaded?(FunLand.Mappable) do
+    @behaviour FunLand.Mappable
+  end
   @spec map(t, (any -> any)) :: t
   def map(queue = %__MODULE__{contents: contents}, fun) do
     changes = :lists.map(fun, :queue.to_list(contents))

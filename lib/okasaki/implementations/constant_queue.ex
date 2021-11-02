@@ -13,7 +13,9 @@ defmodule Okasaki.Implementations.ConstantQueue do
     lefthat: list
   }
 
-  use FunLand.Mappable
+  if Code.ensure_loaded?(FunLand.Mappable) do
+    @behaviour FunLand.Mappable
+  end
   @spec map(t, (any -> any)) :: t
   def map(queue = %__MODULE__{left: left, right: right, lefthat: lefthat}, fun) do
     %__MODULE__{queue |

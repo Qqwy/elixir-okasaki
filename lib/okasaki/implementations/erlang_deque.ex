@@ -14,7 +14,9 @@ defmodule Okasaki.Implementations.ErlangDeque do
   # Note that the notions of 'right' and 'left'
   # are the opposite of what `:queue` considers them.
 
-  use FunLand.Mappable
+  if Code.ensure_loaded?(FunLand.Mappable) do
+    @behaviour FunLand.Mappable
+  end
   @spec map(t, (any -> any)) :: t
   def map(deque = %__MODULE__{contents: contents}, fun) do
     changes = :lists.map(fun, :queue.to_list(contents))

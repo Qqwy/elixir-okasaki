@@ -14,7 +14,9 @@ defmodule Okasaki.Implementations.AmortizedDeque do
     right: list
   }
 
-  use FunLand.Mappable
+  if Code.ensure_loaded?(FunLand.Mappable) do
+    @behaviour FunLand.Mappable
+  end
   @spec map(t, (any -> any)) :: t
   def map(deque = %__MODULE__{left: left, right: right}, fun) do
     %__MODULE__{deque | left: :lists.map(fun, left), right: :lists.map(fun, right)}

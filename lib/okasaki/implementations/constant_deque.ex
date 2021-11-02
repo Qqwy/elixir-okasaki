@@ -21,7 +21,9 @@ defmodule Okasaki.Implementations.ConstantDeque do
     righthat: list
   }
 
-  use FunLand.Mappable
+  if Code.ensure_loaded?(FunLand.Mappable) do
+    @behaviour FunLand.Mappable
+  end
   @spec map(t, (any -> any)) :: t
   def map(deque = %__MODULE__{left: left, right: right, lefthat: lefthat, righthat: righthat}, fun) do
     %__MODULE__{deque |
