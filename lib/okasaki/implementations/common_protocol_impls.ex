@@ -63,6 +63,11 @@ for module <- [
       def count(queue) do
         {:ok, @for.size(queue)}
       end
+
+      # No simple faster-than-linear implementation
+      def slice(_queue) do
+        {:error, @for}
+      end
     end
 
     defimpl Insertable, for: module do
@@ -122,6 +127,11 @@ for module <- [
 
       def count(deque) do
         {:ok, @for.size(deque)}
+      end
+
+      # No simple faster-than-linear implementation
+      def slice(_deque) do
+        {:error, @for}
       end
     end
 
