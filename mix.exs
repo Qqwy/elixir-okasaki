@@ -3,8 +3,8 @@ defmodule Okasaki.Mixfile do
 
   def project do
     [app: :okasaki,
-     version: "1.0.0",
-     elixir: "~> 1.3",
+     version: "1.0.1",
+     elixir: "~> 1.9",
      name: "Okasaki",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
